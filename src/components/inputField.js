@@ -13,6 +13,13 @@ const Input = styled.input`
   }
 `;
 
-export default function InputField({ type, placeholder }) {
-  return <Input type={type} placeholder={placeholder} />;
+export default function InputField({ type, placeholder, value, onChange }) {
+  return (
+    <Input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
+  );
 }
