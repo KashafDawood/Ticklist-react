@@ -63,35 +63,47 @@ export default function Signup() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} noValidate>
       <div className="SignupContainer">
         <h1>Signup</h1>
         <InputField
           type={"text"}
           value={name}
           placeholder={"Name"}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            setName(e.target.value);
+            delete errors.name;
+          }}
         />
 
         <InputField
           type={"email"}
           value={email}
           placeholder={"Email"}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            delete errors.email;
+          }}
         />
 
         <InputField
           type={"password"}
           value={password}
           placeholder={"Password"}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            delete errors.password;
+          }}
         />
 
         <InputField
           type={"password"}
           value={confirmPassword}
           placeholder={"Confirm Password"}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            delete errors.confirmPassword;
+          }}
         />
 
         <Btn>Signup</Btn>
