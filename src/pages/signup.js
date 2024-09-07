@@ -1,5 +1,4 @@
-import InputField from "../components/inputField";
-import Btn from "../components/button";
+import { Btn, InputField } from "../components/utility";
 import { useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
