@@ -1,3 +1,11 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --dark-grey: #444;
+  --primary: #3ABEF9;
+  --acent: #AD49E1;
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -26,4 +34,22 @@ code {
 
 .SignupContainer h1{
   font-size: 3rem;
+}
+
+.errorMessageContainer{
+  color : var(--black);
+  background: #ffdddf;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: start;
+  border-radius: 5px;
+  border-left: 3px solid red;
+}
+
+.icon {
+  padding-right: 10px;
+}
+
+.icon-danger {
+  color: red;
 }

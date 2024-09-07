@@ -1,6 +1,11 @@
 import InputField from "../components/inputField";
 import Btn from "../components/button";
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(fas);
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -67,7 +72,6 @@ export default function Signup() {
           placeholder={"Name"}
           onChange={(e) => setName(e.target.value)}
         />
-        {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
 
         <InputField
           type={"email"}
@@ -75,7 +79,6 @@ export default function Signup() {
           placeholder={"Email"}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
 
         <InputField
           type={"password"}
@@ -83,7 +86,6 @@ export default function Signup() {
           placeholder={"Password"}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
 
         <InputField
           type={"password"}
@@ -91,12 +93,29 @@ export default function Signup() {
           placeholder={"Confirm Password"}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        {errors.confirmPassword && (
-          <p style={{ color: "red" }}>{errors.confirmPassword}</p>
-        )}
 
         <Btn>Signup</Btn>
+        {errors && Object.keys(errors).length > 0 && (
+          <ErrorMessage errors={errors} />
+        )}
       </div>
     </form>
+  );
+}
+
+function ErrorMessage({ errors }) {
+  return (
+    <div>
+      {errors &&
+        Object.keys(errors).map((key) => (
+          <p className="errorMessageContainer" key={key}>
+            <FontAwesomeIcon
+              className="icon icon-danger"
+              icon={["fas", "triangle-exclamation"]}
+            />
+            {errors[key]}
+          </p>
+        ))}
+    </div>
   );
 }
