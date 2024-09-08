@@ -48,7 +48,7 @@ code {
 
 .successMessageContainer{
   color : var(--black);
-  background: #ddffdd;
+  background: #ecffdd;
   margin-top: 10px;
   padding: 10px;
   text-align: start;

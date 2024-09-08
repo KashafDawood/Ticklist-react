@@ -14,6 +14,13 @@ export default function Signup() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [errors, setErrors] = useState({});
 
+  function resetForm() {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm("");
+  }
+
   // Helper function to validate the email format
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
@@ -58,8 +65,8 @@ export default function Signup() {
       setErrors(validationErrors); // Show errors in the UI
     } else {
       // If no validation errors, proceed with form submission
+      resetForm();
       setErrors({});
-      console.log("Form submit", name, email, password, passwordConfirm);
       axios
         .post("http://127.0.0.1:1000/api/v1/users/signup", {
           name,
