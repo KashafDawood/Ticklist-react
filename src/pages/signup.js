@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Btn, InputField } from "../components/utility";
 import { useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -13,6 +14,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   function resetForm() {
     setName("");
@@ -79,6 +81,7 @@ export default function Signup() {
             newError.responseSuccess =
               "Your account has been successfully created";
             setErrors(newError);
+            navigate("/dashboard");
           }
         })
         .catch((err) => {
