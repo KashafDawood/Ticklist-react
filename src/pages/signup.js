@@ -51,6 +51,7 @@ export default function Signup() {
   // Handle form submission
   function handleSubmit(e) {
     e.preventDefault();
+    const newError = {};
 
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
@@ -66,8 +67,22 @@ export default function Signup() {
           password,
           passwordConfirm,
         })
-        .then((response) => console.log(response))
-        .catch((err) => console.log(err));
+        .then((response) => {
+          if (response.status === 201) {
+            newError.responseSuccess =
+              "Your account has been successfully created";
+            setErrors(newError);
+          }
+        })
+        .catch((err) => {
+          if (err.response.data.error.code === 11000) {
+            newError.responseError = "User already exist Please Login";
+          } else {
+            newError.responseError =
+              "Something went wrong! Please try agian later";
+          }
+          setErrors(newError);
+        });
     }
   }
 
@@ -129,10 +144,23 @@ function ErrorMessage({ errors }) {
     <div>
       {errors &&
         Object.keys(errors).map((key) => (
-          <p className="errorMessageContainer" key={key}>
+          <p
+            className={
+              errors.responseSuccess
+                ? "successMessageContainer"
+                : "errorMessageContainer"
+            }
+            key={key}
+          >
             <FontAwesomeIcon
-              className="icon icon-danger"
-              icon={["fas", "triangle-exclamation"]}
+              className={
+                errors.responseSuccess ? "icon icon-good" : "icon icon-danger"
+              }
+              icon={
+                errors.responseSuccess
+                  ? ["fas", "circle-check"]
+                  : ["fas", "triangle-exclamation"]
+              }
             />
             {errors[key]}
           </p>

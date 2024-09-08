@@ -46,10 +46,24 @@ code {
   border-left: 3px solid red;
 }
 
+.successMessageContainer{
+  color : var(--black);
+  background: #ddffdd;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: start;
+  border-radius: 5px;
+  border-left: 3px solid greenyellow;
+}
+
 .icon {
   padding-right: 10px;
 }
 
 .icon-danger {
   color: red;
+}
+
+.icon-good{
+  color: greenyellow;
 }
