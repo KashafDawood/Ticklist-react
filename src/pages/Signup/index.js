@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Btn, InputField } from "../components/utility";
-import Alerts from "./../components/Alerts";
+import { Btn, InputField } from "../../components/utility";
+import Alerts from "../../components/Alerts";
 import axios from "axios";
 
 export default function Signup() {
