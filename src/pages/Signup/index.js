@@ -4,6 +4,8 @@ import { Btn, InputField } from "../../components/utility";
 import Alerts from "../../components/Alerts";
 import axios from "axios";
 
+// require("dotenv").config({ path: "./config.env" });
+
 export default function Signup() {
   const {
     register,
