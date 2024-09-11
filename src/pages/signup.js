@@ -1,21 +1,57 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../components/utility";
 import Alerts from "./../components/Alerts";
-// import axios from "axios";
+import axios from "axios";
 
 export default function Signup() {
   const {
     register,
     handleSubmit,
+    setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
-  // const navigate = useNavigate();
+
+  const navigate = useNavigate();
 
   // const passwordValidationPattern =
   //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
-  const onsubmit = (data) => console.log(data);
+  const onsubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:1000/api/v1/users/signup",
+        data
+      );
+      if (response.status === 201) {
+        navigate("/dashboard");
+      }
+      reset();
+    } catch (err) {
+      if (!err.response) {
+        // Network or other error (e.g., no response from server)
+        setError("root", {
+          type: "manual",
+          message:
+            "Network error: Unable to reach the server. Please try again later.",
+        });
+      } else if (err.response.data.error) {
+        // API response error
+        if (err.response.data.error.code === 11000) {
+          setError("email", {
+            type: "manual",
+            message: "User already exists. Please login.",
+          });
+        } else {
+          setError("root", {
+            type: "manual",
+            message: "Something went wrong! Please try again later.",
+          });
+        }
+      }
+    }
+  };
 
   const fields = [
     {
