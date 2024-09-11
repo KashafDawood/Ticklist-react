@@ -100,7 +100,7 @@ export default function Signup() {
         </Btn>
         <div className="formLinks">
           <Link to={"/signup"}>Create a new account</Link>
-          <Link>Forget Password</Link>
+          <Link to={"/forgetPassword"}>Forget Password</Link>
         </div>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
