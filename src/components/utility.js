@@ -32,13 +32,12 @@ export function Btn({ children, onClick }) {
   return <Button onClick={onClick}>{children}</Button>;
 }
 
-export function InputField({ type, placeholder, value, onChange }) {
+export function InputField({ type, placeholder, register, name, validation }) {
   return (
     <Input
+      {...register(name, validation)}
       type={type}
       placeholder={placeholder}
-      value={value}
-      onChange={onChange}
     />
   );
 }

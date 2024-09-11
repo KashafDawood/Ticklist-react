@@ -27,7 +27,8 @@ export default function ErrorMessage({ errors }) {
                   : ["fas", "triangle-exclamation"]
               }
             />
-            {errors[key]}
+            {/* Displaying only the error message */}
+            {errors[key]?.message || errors[key]}
           </p>
         ))}
     </div>
