@@ -8,7 +8,7 @@ export default function Signup() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
   // const navigate = useNavigate();
 
@@ -78,7 +78,9 @@ export default function Signup() {
             validation={field.validation}
           />
         ))}
-        <Btn>Signup</Btn>
+        <Btn disable={isSubmitting}>
+          {isSubmitting ? "Loading..." : "Signup"}
+        </Btn>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
     </div>

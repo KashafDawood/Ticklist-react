@@ -28,8 +28,12 @@ const Input = styled.input`
   }
 `;
 
-export function Btn({ children, onClick }) {
-  return <Button onClick={onClick}>{children}</Button>;
+export function Btn({ children, onClick, disable }) {
+  return (
+    <Button disabled={disable} onClick={onClick}>
+      {children}
+    </Button>
+  );
 }
 
 export function InputField({ type, placeholder, register, name, validation }) {
