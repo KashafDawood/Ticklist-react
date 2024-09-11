@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/utility";
 import Alerts from "../../components/Alerts";
@@ -98,6 +98,10 @@ export default function Signup() {
         <Btn disable={isSubmitting}>
           {isSubmitting ? "Loading..." : "Login"}
         </Btn>
+        <div className="formLinks">
+          <Link to={"/signup"}>Create a new account</Link>
+          <Link>Forget Password</Link>
+        </div>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
     </div>
