@@ -1,12 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Btn, InputField } from "../components/utility";
+import Alerts from "./../components/Alerts";
 import { useState } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-
-library.add(fas);
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -141,40 +137,8 @@ export default function Signup() {
         />
 
         <Btn>Signup</Btn>
-        {errors && Object.keys(errors).length > 0 && (
-          <ErrorMessage errors={errors} />
-        )}
+        {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </div>
     </form>
-  );
-}
-
-function ErrorMessage({ errors }) {
-  return (
-    <div>
-      {errors &&
-        Object.keys(errors).map((key) => (
-          <p
-            className={
-              errors.responseSuccess
-                ? "successMessageContainer"
-                : "errorMessageContainer"
-            }
-            key={key}
-          >
-            <FontAwesomeIcon
-              className={
-                errors.responseSuccess ? "icon icon-good" : "icon icon-danger"
-              }
-              icon={
-                errors.responseSuccess
-                  ? ["fas", "circle-check"]
-                  : ["fas", "triangle-exclamation"]
-              }
-            />
-            {errors[key]}
-          </p>
-        ))}
-    </div>
   );
 }
