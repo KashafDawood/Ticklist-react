@@ -1,107 +1,105 @@
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../components/utility";
 import Alerts from "./../components/Alerts";
-import { useState } from "react";
 import axios from "axios";
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
   const navigate = useNavigate();
 
-  function resetForm() {
-    setEmail("");
-    setPassword("");
-  }
+  // const passwordValidationPattern =
+  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
-  // Helper function to validate the email format
-  function isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }
-
-  // Form validation function
-  function validateForm() {
-    const newErrors = {};
-
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!isValidEmail(email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (!password) {
-      newErrors.password = "Password is required";
-    } else if (password.length < 8) {
-      newErrors.password = "Password should be at least 8 characters";
-    }
-
-    return newErrors;
-  }
-
-  // Handle form submission
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newError = {};
-
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors); // Show errors in the UI
-    } else {
-      // If no validation errors, proceed with form submission
-      resetForm();
-      setErrors({});
-      axios
-        .post("http://127.0.0.1:1000/api/v1/users/login", {
-          email,
-          password,
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            newError.responseSuccess = "You logged In successfully";
-            setErrors(newError);
-            navigate("/dashboard");
-          }
-          console.log(response);
-        })
-        .catch((err) => {
-          if (err.status === 401) {
-            newError.responseError = err.response.data.message;
-          }
-          setErrors(newError);
-          console.log(err);
+  const onsubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:1000/api/v1/users/login",
+        data
+      );
+      if (response.status === 200) {
+        navigate("/dashboard");
+      }
+      reset();
+    } catch (err) {
+      if (!err.response) {
+        // Network or other error (e.g., no response from server)
+        setError("root", {
+          type: "manual",
+          message:
+            "Network error: Unable to reach the server. Please try again later.",
         });
+      } else if (err.status === 401) {
+        setError("root", {
+          type: "manual",
+          message: err.response.data.message,
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: "Something went wrong! Please try again later.",
+        });
+      }
     }
-  }
+  };
+
+  const fields = [
+    {
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      validation: {
+        required: "Email is required",
+        pattern: { value: /\S+@\S+\.\S+/, message: "Invalid Email Address" },
+      },
+    },
+    {
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      validation: {
+        required: "Password is required",
+        minLength: {
+          value: 8,
+          message: "Password must be 8 charactors long",
+        },
+        // pattern: {
+        //   value: passwordValidationPattern,
+        //   message: `Password must be at least 8 characters,
+        //     include an uppercase letter,
+        //     a lowercase letter, a number,
+        //     and a special character`,
+        // },
+      },
+    },
+  ];
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <div className="SignupContainer">
-        <h1>Login</h1>
-
-        <InputField
-          type={"email"}
-          value={email}
-          placeholder={"Email"}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            delete errors.email;
-          }}
-        />
-
-        <InputField
-          type={"password"}
-          value={password}
-          placeholder={"Password"}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            delete errors.password;
-          }}
-        />
-
-        <Btn>Login</Btn>
+    <div className="SignupContainer">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit(onsubmit)}>
+        {fields.map((field) => (
+          <InputField
+            key={field.name}
+            name={field.name}
+            type={field.type}
+            placeholder={field.placeholder}
+            register={register}
+            validation={field.validation}
+          />
+        ))}
+        <Btn disable={isSubmitting}>
+          {isSubmitting ? "Loading..." : "Login"}
+        </Btn>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
