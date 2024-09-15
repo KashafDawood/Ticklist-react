@@ -5,36 +5,65 @@ import Dashboard from "./../pages/Dashboard";
 import ForgetPassword from "./../pages/ForgetPassword";
 import Projects from "./../pages/Projects";
 import Chat from "./../pages/Chat";
+import Layout from "../components/Layout";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <Layout>
+        <Signup />
+      </Layout>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <Layout>
+        <Login />
+      </Layout>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <Layout>
+        <Dashboard />
+      </Layout>
+    ),
   },
   {
     path: "/forgetPassword",
-    element: <ForgetPassword />,
+    element: (
+      <Layout>
+        <ForgetPassword />
+      </Layout>
+    ),
   },
   {
     path: "/projects",
-    element: <Projects />,
+    element: (
+      <Layout>
+        <Projects />
+      </Layout>
+    ),
   },
   {
     path: "/chat",
-    element: <Chat />,
+    element: (
+      <Layout>
+        <Chat />
+      </Layout>
+    ),
   },
 ]);
 
