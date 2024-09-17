@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
@@ -14,8 +14,6 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const navigate = useNavigate();
-
   // const passwordValidationPattern =
   //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
@@ -29,7 +27,7 @@ export default function Login() {
       if (response.status === 200) {
         cookies.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.data.user));
-        navigate("/dashboard");
+        window.location.href = "/dashboard";
       }
       reset();
     } catch (err) {

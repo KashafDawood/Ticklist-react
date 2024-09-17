@@ -48,3 +48,13 @@
   .loginBtn a{
     padding: 0 10px;
   }
+
+  .logoutBtn{
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+  }
+
+  .logoutBtn button{
+    margin-left: 50px;
+  }

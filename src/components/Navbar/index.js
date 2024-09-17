@@ -3,9 +3,17 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
+import cookies from "js-cookies";
 import "./Navbar.css";
 
 library.add(fas);
+const user = JSON.parse(localStorage.getItem("user"));
+
+function handleLogout() {
+  localStorage.removeItem("user");
+  cookies.removeItem("token");
+  window.location.href = "/login";
+}
 
 export function Navbar() {
   return (
@@ -14,14 +22,21 @@ export function Navbar() {
         <DarkMode />
       </div>
       <div className="logo">TickList</div>
-      <div className="loginBtn">
-        <Link to={"/signup"}>Signup</Link>
-        <Link to={"/login"}>Login</Link>
-        <FontAwesomeIcon
-          style={{ fontSize: "20px" }}
-          icon={["fas", "circle-user"]}
-        />
-      </div>
+      {user ? (
+        <div className="logoutBtn">
+          <FontAwesomeIcon
+            style={{ fontSize: "20px" }}
+            icon={["fas", "circle-user"]}
+          />
+          <h3>{user.name.split(" ")[0]}</h3>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div className="loginBtn">
+          <Link to={"/signup"}>Signup</Link>
+          <Link to={"/login"}>Login</Link>
+        </div>
+      )}
     </nav>
   );
 }
