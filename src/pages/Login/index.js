@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import axios from "axios";
+import cookies from "js-cookies";
 
-export default function Signup() {
+export default function Login() {
   const {
     register,
     handleSubmit,
@@ -26,8 +27,9 @@ export default function Signup() {
         { withCredentials: true }
       );
       if (response.status === 200) {
+        cookies.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.data.user));
         navigate("/dashboard");
-        console.log(response.data.token);
       }
       reset();
     } catch (err) {
