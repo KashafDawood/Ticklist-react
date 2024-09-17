@@ -25,7 +25,7 @@ export default function Signup() {
         data
       );
       if (response.status === 201) {
-        navigate("/dashboard");
+        navigate("/login");
       }
       reset();
     } catch (err) {

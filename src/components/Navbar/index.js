@@ -5,17 +5,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
 import cookies from "js-cookies";
 import "./Navbar.css";
+import { useEffect, useState } from "react";
+import getLoginUser from "./../../HelperFunction/getLoginUser";
 
 library.add(fas);
-const user = JSON.parse(localStorage.getItem("user"));
 
 function handleLogout() {
-  localStorage.removeItem("user");
+  localStorage.removeItem("userId");
   cookies.removeItem("token");
   window.location.href = "/login";
 }
 
 export function Navbar() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getLoginUser();
+        setUser(userData.data);
+      } catch (error) {}
+    };
+
+    fetchUser();
+  }, []);
+
   return (
     <nav className="nav">
       <div>

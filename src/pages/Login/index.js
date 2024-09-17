@@ -26,7 +26,10 @@ export default function Login() {
       );
       if (response.status === 200) {
         cookies.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.data.user));
+        localStorage.setItem(
+          "userId",
+          JSON.stringify(response.data.data.user._id)
+        );
         window.location.href = "/dashboard";
       }
       reset();
