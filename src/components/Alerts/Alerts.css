@@ -1,0 +1,31 @@
+.errorMessageContainer{
+    color : var(--alert-error-text);
+    background: var(--alert-error-bg);
+    margin-top: 10px;
+    padding: 10px;
+    text-align: start;
+    border-radius: 5px;
+    border-left: 3px solid var(--alert-error-text);
+  }
+  
+  .successMessageContainer{
+    color : var(--alert-success-text);
+    background: var(--alert-success-bg);
+    margin-top: 10px;
+    padding: 10px;
+    text-align: start;
+    border-radius: 5px;
+    border-left: 3px solid var(--alert-success-text);
+  }
+  
+  .icon {
+    padding-right: 10px;
+  }
+  
+  .icon-danger {
+    color: var(--alert-error-text);
+  }
+  
+  .icon-good{
+    color: var(--alert-success-text);
+  }

@@ -1,0 +1,50 @@
+/* ============navbar============ */
+.nav{
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--primary-text-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .loginBtn a{
+    color: var(--primary-text-color);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .bottomNav{
+    width: 25%;
+    border-radius: 30px;
+    margin: 20px auto;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-color);
+  }
+  
+  nav ul{
+    padding: 0;
+  }
+  
+  nav ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
+  }
+  
+  nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .loginBtn a{
+    padding: 0 10px;
+  }

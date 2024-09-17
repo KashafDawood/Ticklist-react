@@ -2,24 +2,26 @@ import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DarkMode from "./../DarkMode";
+import "./Navbar.css";
 
 library.add(fas);
 
 export function Navbar() {
   return (
     <nav className="nav">
-      <ul>
-        <li>lightmode</li>
-        <li>TickList</li>
-        <li>
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-          <FontAwesomeIcon
-            style={{ fontSize: "20px" }}
-            icon={["fas", "circle-user"]}
-          />
-        </li>
-      </ul>
+      <div>
+        <DarkMode />
+      </div>
+      <div className="logo">TickList</div>
+      <div className="loginBtn">
+        <Link to={"/signup"}>Signup</Link>
+        <Link to={"/login"}>Login</Link>
+        <FontAwesomeIcon
+          style={{ fontSize: "20px" }}
+          icon={["fas", "circle-user"]}
+        />
+      </div>
     </nav>
   );
 }
