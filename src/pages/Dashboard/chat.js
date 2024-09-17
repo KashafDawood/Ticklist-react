@@ -1,10 +1,9 @@
 import { BottomNavbar } from "../../components/Navbar";
-import Tasks from "./tasks";
 
-export default function Dashboard() {
+export default function Chat() {
   return (
     <div>
-      <Tasks />
+      <div>This is chat page</div>
       <BottomNavbar />
     </div>
   );

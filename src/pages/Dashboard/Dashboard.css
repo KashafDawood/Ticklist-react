@@ -1,0 +1,133 @@
+.dashboardContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    padding: 30px;
+  }
+  
+  /* Task Menu Styles */
+  .taskMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding: 10px;
+    color: var(--button-text-color);
+  }
+  
+  .taskMenu li {
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: var(--button-text-color);
+  }
+  
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .task-item {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-title {
+    font-size: 1.5rem;
+    color: var(--primary-text-color);
+  }
+  
+  .task-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--button-text-color);
+  }
+  
+  .task-status-todo {
+    background-color: var(--accent-color);
+  }
+  
+  .task-status-inprogress {
+    background-color: var(--link-color);
+  }
+  
+  .task-status-incomplete {
+    background-color: #dc3545; /* Keeping this color for better visibility */
+  }
+  
+  .task-description {
+    margin: 10px 0;
+    color: var(--secondary-text-color);
+  }
+  
+  .task-category, .task-deadline, .task-project, .task-assign-by, .task-user, .task-created-at {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: var(--secondary-text-color);
+  }
+  
+  .task-priority-low {
+    border-left: 5px solid var(--button-bg-color);
+  }
+  
+  .task-priority-medium {
+    border-left: 5px solid var(--link-color);
+  }
+  
+  .task-priority-high {
+    border-left: 5px solid #dc3545; /* High priority kept in red for visibility */
+  }
+  
+  .calendarContainer {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+  }
+  
+  button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  /* Calendar UI Styles */
+  .calendarContainer {
+    background-color: var(--background-color);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  /* Calendar Styles */
+  .react-calendar {
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--background-color);
+    border: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: var(--accent-color);
+    color: var(--button-text-color);
+  }
+  

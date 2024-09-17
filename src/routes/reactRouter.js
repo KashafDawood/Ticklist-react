@@ -3,8 +3,8 @@ import Signup from "./../pages/Signup";
 import Login from "./../pages/Login";
 import Dashboard from "./../pages/Dashboard";
 import ForgetPassword from "./../pages/ForgetPassword";
-import Projects from "./../pages/Projects";
-import Chat from "./../pages/Chat";
+import Tasks from "./../pages/Dashboard/tasks";
+import Chat from "./../pages/Dashboard/chat";
 import Layout from "../components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -50,15 +50,15 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/projects",
+    path: "/dashboard/tasks",
     element: (
       <Layout>
-        <Projects />
+        <Tasks />
       </Layout>
     ),
   },
   {
-    path: "/chat",
+    path: "/dashboard/chat",
     element: (
       <Layout>
         <Chat />

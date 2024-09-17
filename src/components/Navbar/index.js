@@ -31,7 +31,7 @@ export function BottomNavbar() {
     <nav className="bottomNav">
       <ul>
         <li>
-          <Link to={"/projects"}>
+          <Link to={"/dashboard/tasks"}>
             <FontAwesomeIcon
               style={{ fontSize: "12px" }}
               icon={["fas", "list-check"]}
@@ -40,7 +40,7 @@ export function BottomNavbar() {
           </Link>
         </li>
         <li>
-          <Link to={"/chat"}>
+          <Link to={"/dashboard/chat"}>
             <FontAwesomeIcon
               style={{ fontSize: "12px" }}
               icon={["fas", "message"]}
