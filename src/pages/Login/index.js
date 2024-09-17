@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Btn, InputField } from "../../components/utility";
+import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import axios from "axios";
 
@@ -27,6 +27,7 @@ export default function Signup() {
       );
       if (response.status === 200) {
         navigate("/dashboard");
+        console.log(response.data.token);
       }
       reset();
     } catch (err) {

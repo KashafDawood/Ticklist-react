@@ -6,7 +6,7 @@ import ForgetPassword from "./../pages/ForgetPassword";
 import Projects from "./../pages/Projects";
 import Chat from "./../pages/Chat";
 import Layout from "../components/Layout";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -67,4 +67,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+export default function AppRouter() {
+  return <RouterProvider router={router} />;
+}

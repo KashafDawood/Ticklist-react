@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Btn, InputField } from "../../components/utility";
+import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import axios from "axios";
 
