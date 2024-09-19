@@ -7,6 +7,9 @@ import Tasks from "./../pages/Dashboard/tasks";
 import Chat from "./../pages/Dashboard/chat";
 import Layout from "../components/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import ProtectedRoutes from "./protectedRoutes";
+// import { AuthProvider } from "./auth";
+import React from "react";
 
 const router = createBrowserRouter([
   {
@@ -34,14 +37,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
-    element: (
-      <Layout>
-        <Dashboard />
-      </Layout>
-    ),
-  },
-  {
     path: "/forgetPassword",
     element: (
       <Layout>
@@ -50,23 +45,43 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard/tasks",
+    path: "/dashboard",
     element: (
+      // <ProtectedRoutes>
       <Layout>
-        <Tasks />
+        <Dashboard />
       </Layout>
+      // </ProtectedRoutes>
     ),
-  },
-  {
-    path: "/dashboard/chat",
-    element: (
-      <Layout>
-        <Chat />
-      </Layout>
-    ),
+    children: [
+      {
+        path: "tasks",
+        element: (
+          // <ProtectedRoutes>
+          <Layout>
+            <Tasks />
+          </Layout>
+          // </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "chat",
+        element: (
+          // <ProtectedRoutes>
+          <Layout>
+            <Chat />
+          </Layout>
+          // </ProtectedRoutes>
+        ),
+      },
+    ],
   },
 ]);
 
 export default function AppRouter() {
-  return <RouterProvider router={router} />;
+  return (
+    // <AuthProvider>
+    <RouterProvider router={router} />
+    // </AuthProvider>
+  );
 }
