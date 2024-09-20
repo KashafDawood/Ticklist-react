@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    const token = Cookies.getItem("token");
+    const token = Cookies.getItem("jwt");
 
     if (userId && token) {
       setIsSignedIn(true);

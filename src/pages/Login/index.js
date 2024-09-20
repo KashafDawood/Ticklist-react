@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import axios from "axios";
-import cookies from "js-cookies";
 
 export default function Login() {
   const {
@@ -25,7 +24,6 @@ export default function Login() {
         { withCredentials: true }
       );
       if (response.status === 200) {
-        cookies.setItem("token", response.data.token);
         localStorage.setItem(
           "userId",
           JSON.stringify(response.data.data.user._id)

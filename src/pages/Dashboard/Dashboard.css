@@ -1,6 +1,6 @@
 .dashboardContainer {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 0.8fr 3fr 1fr;
     padding: 30px;
   }
   
@@ -10,14 +10,14 @@
     padding: 0;
     margin: 0;
     padding: 10px;
-    color: var(--button-text-color);
+    color: var(--primary-text-color);
   }
   
   .taskMenu li {
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    color: var(--button-text-color);
+    color: var(--primary-text-color);
   }
   
   .task-list {

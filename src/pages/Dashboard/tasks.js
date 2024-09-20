@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Dashboard.css";
+// import axios from "axios";
 
 // Example usage of TaskList component
 const tasks = [
@@ -122,7 +123,7 @@ export default function Tasks() {
     <div>
       <div className="dashboardContainer">
         <TaskMenu />
-        <TaskList tasks={tasks} />
+        <TaskList />
         <CalendarUI />
       </div>
       <BottomNavbar />
@@ -142,6 +143,26 @@ function TaskMenu() {
 }
 
 function TaskList() {
+  // const [tasks, setTasks] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         "http://127.0.0.1:1000/api/v1/tasks/getUserTasks",
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       console.log(res);
+  //       setTasks(res.data.data.tasks);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   return (
     <div className="task-list">
       {tasks.map((task, index) => (
