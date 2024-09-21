@@ -4,6 +4,11 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Dashboard.css";
 // import axios from "axios";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(fas);
 
 // Example usage of TaskList component
 const tasks = [
@@ -14,7 +19,7 @@ const tasks = [
       "Complete the initial draft of the project proposal for the team meeting.",
     category: "Work",
     priority: "High",
-    status: "InProgress",
+    status: "Complete",
     deadline: "2024-10-12",
     project: { name: "Website Redesign" },
     assignBy: { name: "John Doe" },
@@ -27,7 +32,7 @@ const tasks = [
     description:
       "Review chapters 3 to 5 for the upcoming software engineering exam.",
     category: "Study",
-    priority: "Medium",
+    priority: "",
     status: "Todo",
     deadline: "2024-09-30",
     project: { name: "Exam Preparation" },
@@ -172,42 +177,111 @@ function TaskList() {
   );
 }
 
+// function TaskItem({ task }) {
+//   return (
+//     <div className={`task-item task-priority-${task.priority.toLowerCase()}`}>
+//       <div className="task-header">
+//         <h3 className="task-title">{task.title}</h3>
+//         <span
+//           className={`task-status task-status-${task.status.toLowerCase()}`}
+//         >
+//           {task.status}
+//         </span>
+//       </div>
+//       <p className="task-description">{task.description}</p>
+//       <p className="task-category">
+//         <strong>Category:</strong> {task.category}
+//       </p>
+//       <p className="task-deadline">
+//         <strong>Deadline:</strong>{" "}
+//         {task.deadline
+//           ? new Date(task.deadline).toLocaleDateString()
+//           : "No deadline"}
+//       </p>
+//       <p className="task-project">
+//         <strong>Project:</strong> {task.project?.name || "No project"}
+//       </p>
+//       <p className="task-assign-by">
+//         <strong>Assigned by:</strong> {task.assignBy?.name || "Unknown"}
+//       </p>
+//       <p className="task-user">
+//         <strong>Assigned to:</strong> {task.user?.name || "Unassigned"}
+//       </p>
+//       <p className="task-created-at">
+//         <strong>Created on:</strong>{" "}
+//         {new Date(task.createdAt).toLocaleDateString()}
+//       </p>
+//     </div>
+//   );
+// }
 function TaskItem({ task }) {
   return (
-    <div className={`task-item task-priority-${task.priority.toLowerCase()}`}>
-      <div className="task-header">
-        <h3 className="task-title">{task.title}</h3>
-        <span
-          className={`task-status task-status-${task.status.toLowerCase()}`}
-        >
-          {task.status}
-        </span>
+    <div className={`taskItem_container`}>
+      <div
+        className={`date_placeholder task-priority-${task.priority.toLowerCase()}`}
+      >
+        <div className="task_createdAt">{formatDate(task.createdAt)}</div>
+        <div className="task_deadLine">
+          {task.deadline ? (
+            formatDate(task.deadline)
+          ) : (
+            <FontAwesomeIcon icon={["fas", "infinity"]} />
+          )}
+        </div>
       </div>
-      <p className="task-description">{task.description}</p>
-      <p className="task-category">
-        <strong>Category:</strong> {task.category}
-      </p>
-      <p className="task-deadline">
-        <strong>Deadline:</strong>{" "}
-        {task.deadline
-          ? new Date(task.deadline).toLocaleDateString()
-          : "No deadline"}
-      </p>
-      <p className="task-project">
-        <strong>Project:</strong> {task.project?.name || "No project"}
-      </p>
-      <p className="task-assign-by">
-        <strong>Assigned by:</strong> {task.assignBy?.name || "Unknown"}
-      </p>
-      <p className="task-user">
-        <strong>Assigned to:</strong> {task.user?.name || "Unassigned"}
-      </p>
-      <p className="task-created-at">
-        <strong>Created on:</strong>{" "}
-        {new Date(task.createdAt).toLocaleDateString()}
-      </p>
+      <div className="taskItem_content">
+        <div className="task-header">
+          <h3 className="task-title">{task.title}</h3>
+          <div className="task-details">
+            <div className="task-category">{task.category}</div>
+            <div className="task-priority">{task.priority}</div>
+          </div>
+          <p className="task-description">
+            {shortDescription(task.description, 10)}
+          </p>
+          {task.project && (
+            <div className="project-details">
+              <p className="task-project">
+                <strong>Project:</strong> {task.project?.name}
+              </p>
+              <p className="task-assign-by">
+                <strong>Assigned by:</strong> {task.assignBy?.name}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="task_btn">
+        <div className={`task-status task-status-${task.status.toLowerCase()}`}>
+          {task.status}
+        </div>
+      </div>
     </div>
   );
+}
+
+function formatDate(date) {
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+  });
+
+  const [day, month] = formattedDate.split(" ");
+
+  return (
+    <span>
+      {day} <br />
+      <b>{month}</b>
+    </span>
+  );
+}
+
+function shortDescription(description, wordLimit) {
+  const words = description.split(" ");
+  if (words.length > wordLimit) {
+    return words.slice(0, wordLimit).join(" ") + "...";
+  }
+  return description;
 }
 
 function CalendarUI() {

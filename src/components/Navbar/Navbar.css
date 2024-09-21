@@ -41,7 +41,7 @@
   
   nav ul li a{
     text-decoration: none;
-    color: white;
+    color: var(--wb);
     font-weight: 600;
   }
 
