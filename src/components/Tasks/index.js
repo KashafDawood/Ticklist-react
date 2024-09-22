@@ -2,6 +2,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PillBtn } from "../Utility";
 import "./style.css";
 
 library.add(fas);
@@ -121,10 +122,18 @@ library.add(fas);
 
 export default function TaskList({ tasks }) {
   return (
-    <div className="task-list">
-      {tasks.map((task, index) => (
-        <TaskItem key={index} task={task} />
-      ))}
+    <div className="task-list-container">
+      <div className="task-type">
+        <PillBtn>All</PillBtn>
+        <PillBtn>Todo</PillBtn>
+        <PillBtn>InProgress</PillBtn>
+        <PillBtn>Complete</PillBtn>
+      </div>
+      <div className="task-list">
+        {tasks.map((task, index) => (
+          <TaskItem key={index} task={task} />
+        ))}
+      </div>
     </div>
   );
 }
