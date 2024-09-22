@@ -3,7 +3,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
-import cookies from "js-cookies";
 import { useEffect, useState } from "react";
 import getLoginUser from "./../../HelperFunction/getLoginUser";
 import "./style.css";
@@ -12,7 +11,6 @@ library.add(fas);
 
 function handleLogout() {
   localStorage.removeItem("userId");
-  cookies.removeItem("token");
   window.location.href = "/login";
 }
 

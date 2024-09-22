@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import Cookies from "js-cookies";
 
 const AuthContext = createContext();
 
@@ -8,14 +7,13 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    const token = Cookies.getItem("jwt");
 
-    if (userId && token) {
+    if (userId) {
       setIsSignedIn(true);
     } else {
       setIsSignedIn(false);
     }
-  }, []);
+  }, [isSignedIn]);
 
   return (
     <AuthContext.Provider value={{ isSignedIn, setIsSignedIn }}>
