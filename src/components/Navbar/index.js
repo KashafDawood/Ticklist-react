@@ -4,7 +4,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
 import { useEffect, useState } from "react";
-import getLoginUser from "./../../HelperFunction/getLoginUser";
+import getLoginUser from "./../../API/UserAPI/getLoginUser";
 import "./style.css";
 
 library.add(fas);

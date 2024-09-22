@@ -1,29 +1,25 @@
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { userSignup } from "./../../API/UserAPI/userSignup";
 
-export default function Signup() {
+export default function SignupPage() {
   const {
     register,
     handleSubmit,
+    formState: { errors, isSubmitting },
     setError,
     reset,
-    formState: { errors, isSubmitting },
   } = useForm();
-
   const navigate = useNavigate();
 
   // const passwordValidationPattern =
   //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
-  const onsubmit = async (data) => {
+  const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:1000/api/v1/users/signup",
-        data
-      );
+      const response = await userSignup(data);
       if (response.status === 201) {
         navigate("/login");
       }
@@ -77,8 +73,9 @@ export default function Signup() {
         required: "Password is required",
         minLength: {
           value: 8,
-          message: "Password must be 8 charactors long",
+          message: "Password must be 8 characters long",
         },
+        // Uncomment and use the pattern if needed
         // pattern: {
         //   value: passwordValidationPattern,
         //   message: `Password must be at least 8 characters,
@@ -103,7 +100,7 @@ export default function Signup() {
   return (
     <div className="SignupContainer">
       <h1>Signup</h1>
-      <form onSubmit={handleSubmit(onsubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field) => (
           <InputField
             key={field.name}
