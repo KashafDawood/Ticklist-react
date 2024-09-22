@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
-import axios from "axios";
+import userLogin from "../../API/UserAPI/userLogin";
 
 export default function Login() {
   const {
@@ -18,11 +18,7 @@ export default function Login() {
 
   const onsubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:1000/api/v1/users/login",
-        data,
-        { withCredentials: true }
-      );
+      const response = await userLogin(data);
       if (response.status === 200) {
         localStorage.setItem(
           "userId",
@@ -39,7 +35,7 @@ export default function Login() {
           message:
             "Network error: Unable to reach the server. Please try again later.",
         });
-      } else if (err.status === 401) {
+      } else if (err.response.status === 401) {
         setError("root", {
           type: "manual",
           message: err.response.data.message,
