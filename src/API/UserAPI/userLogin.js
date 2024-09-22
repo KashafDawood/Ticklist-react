@@ -3,7 +3,7 @@ import axios from "axios";
 export default async function userLogin(data) {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:1000/api/v1/users/login",
+      `${process.env.REACT_APP_API_URL}users/login`,
       data,
       { withCredentials: true }
     );
