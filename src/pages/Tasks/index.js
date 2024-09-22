@@ -1,6 +1,6 @@
 import { BottomNavbar } from "../../components/Navbar";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import getUserTask from "../../API/TaskAPI/getUsertask";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import TaskList from "../../components/Tasks";
@@ -11,12 +11,7 @@ export default function Tasks() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://127.0.0.1:1000/api/v1/tasks/getUserTasks",
-          {
-            withCredentials: true,
-          }
-        );
+        const res = await getUserTask();
         console.log(res.data.data.doc);
         setTasks(res.data.data.doc);
       } catch (err) {
