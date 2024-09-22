@@ -74,8 +74,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -83,7 +83,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -97,9 +97,20 @@ button {
   border: 1px solid var(--border-color);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
 /* ================signup/login================ */
 
-.SignupContainer{
+.SignupContainer {
   width: 400px;
   padding: 50px;
   text-align: center;
@@ -110,12 +121,17 @@ button {
   transform: translate(-50%, -50%);
 }
 
-.SignupContainer h1{
+.SignupContainer h1 {
   font-size: 3rem;
 }
 
-.formLinks{
+.formLinks {
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
 }

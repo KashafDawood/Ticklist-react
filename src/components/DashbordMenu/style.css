@@ -1,0 +1,99 @@
+.side-menu-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  background-color: var(--accent-color);
+  color: var(--wb);
+  border-radius: 30px;
+  width: 50px;
+  z-index: 5;
+  position: relative;
+}
+
+.side-menu-extended {
+  z-index: 1;
+  width: 50%;
+  margin-left: -25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 30px 40px;
+  background-color: var(--bw);
+  color: var(--wb);
+  min-width: 150px;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+
+.side-menu-extended .menu div p {
+  text-align: left;
+  padding: 10px 0;
+}
+
+.side-menu .menu {
+  padding: 50px 0;
+}
+
+.side-menu-extended .menu {
+  padding: 40px 0;
+}
+
+.menu div p {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.profile-btn {
+  margin-left: -15px;
+  background-color: var(--wb);
+  color: var(--bw);
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 30px 30px 0;
+  width: 130px;
+}
+
+.isHover {
+  cursor: pointer;
+  width: 200px;
+  left: 3px;
+  bottom: 25px;
+  background-color: var(--wb);
+  color: var(--bw);
+  padding: 5px 10px;
+  border-radius: 30px;
+  position: absolute;
+}
+
+.logo,
+.profile-container {
+  cursor: pointer;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+}
+
+.userProfile span > * {
+  padding: 0 20px;
+}
+
+.profile-model-btn {
+  color: var(--wb);
+  background-color: var(--bw);
+  padding: 10px 20px;
+  border-radius: 5px;
+}

@@ -4,6 +4,7 @@ import getUserTask from "../../API/TaskAPI/getUsertask";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import TaskList from "../../components/Tasks";
+import SideMenu from "../../components/DashbordMenu";
 import "./style.css";
 
 export default function Tasks() {
@@ -12,7 +13,6 @@ export default function Tasks() {
     const fetchData = async () => {
       try {
         const res = await getUserTask();
-        console.log(res.data.data.doc);
         setTasks(res.data.data.doc);
       } catch (err) {
         console.log(err);
@@ -25,23 +25,12 @@ export default function Tasks() {
   return (
     <div>
       <div className="dashboardContainer">
-        <TaskMenu />
+        <SideMenu />
         <TaskList tasks={tasks} />
         <CalendarUI />
       </div>
       <BottomNavbar />
     </div>
-  );
-}
-
-function TaskMenu() {
-  return (
-    <ul className="taskMenu">
-      <li>All</li>
-      <li>Project A</li>
-      <li>Project B</li>
-      <li>Project C</li>
-    </ul>
   );
 }
 
