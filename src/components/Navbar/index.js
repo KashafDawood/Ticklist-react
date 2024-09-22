@@ -4,9 +4,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
 import cookies from "js-cookies";
-import "./Navbar.css";
 import { useEffect, useState } from "react";
 import getLoginUser from "./../../HelperFunction/getLoginUser";
+import "./style.css";
 
 library.add(fas);
 

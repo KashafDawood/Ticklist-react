@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./Dashboard.css";
 import TaskList from "../../components/Tasks";
+import "./style.css";
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
