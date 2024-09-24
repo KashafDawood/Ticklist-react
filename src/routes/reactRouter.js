@@ -48,9 +48,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       // <ProtectedRoutes>
-      <Layout>
-        <Dashboard />
-      </Layout>
+      <Dashboard />
       // </ProtectedRoutes>
     ),
     children: [
@@ -58,9 +56,7 @@ const router = createBrowserRouter([
         path: "tasks",
         element: (
           // <ProtectedRoutes>
-          <Layout>
-            <Tasks />
-          </Layout>
+          <Tasks />
           // </ProtectedRoutes>
         ),
       },
@@ -68,9 +64,7 @@ const router = createBrowserRouter([
         path: "chat",
         element: (
           // <ProtectedRoutes>
-          <Layout>
-            <Chat />
-          </Layout>
+          <Chat />
           // </ProtectedRoutes>
         ),
       },

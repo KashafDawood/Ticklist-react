@@ -1,0 +1,131 @@
+.sidebar {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  width: 60px;
+  height: 92vh;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.sidebar.expanded {
+  width: 240px;
+}
+
+.sidebar-header {
+  margin: 0 10px;
+  padding: 15px 0;
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-info {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.expanded-profile-info {
+  cursor: pointer;
+  margin: 0 5px;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.expanded-profile-info:hover {
+  color: var(--wb);
+  background: linear-gradient(120deg, var(--accent-color), var(--link-color));
+}
+
+.profile-name {
+  margin: 0 20px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.toggle-btn {
+  margin-left: 5px;
+  cursor: pointer;
+  background: var(--accent-color);
+  color: var(--wb);
+  padding: 4px 6px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.sidebar-menu {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 11px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  color: var(--wb);
+  background-color: var(--accent-color);
+  transition: all 0.2s ease;
+}
+
+.menu-item span {
+  margin-left: 10px;
+}
+
+.submenu {
+  margin-left: 20px;
+}
+
+.submenu-item {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.submenu-arrow {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.submenu-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.tooltip {
+  margin-left: 30px;
+  position: absolute;
+  background-color: var(--bw);
+  color: var(--wb);
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  display: none;
+}
+
+.menu-item:hover .tooltip {
+  display: block;
+}
+
+.sidebar-footer {
+  padding: 10px;
+}
