@@ -5,18 +5,15 @@ import {
   faMessage,
   faTasks,
   faBarsProgress,
-  faSignInAlt,
   faSignOutAlt,
   faAngleLeft,
   faAngleRight,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import getLoginUser from "../../API/UserAPI/getLoginUser";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 export default function SideMenu() {
-  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   // const [activeMenu, setActiveMenu] = useState(null);
@@ -40,10 +37,6 @@ export default function SideMenu() {
   const handleExpandToggle = () => {
     setIsExpanded(!isExpanded);
   };
-
-  function handleLogin() {
-    navigate("/login");
-  }
 
   return (
     <div className={`sidebar ${isExpanded ? "expanded" : "collapsed"}`}>
@@ -85,21 +78,12 @@ export default function SideMenu() {
       </div>
 
       <div className="sidebar-footer">
-        {user ? (
-          <MenuItem
-            onClick={handleLogout}
-            icon={faSignOutAlt}
-            label="Logout"
-            isExpanded={isExpanded}
-          />
-        ) : (
-          <MenuItem
-            onClick={handleLogin}
-            icon={faSignInAlt}
-            label="Login"
-            isExpanded={isExpanded}
-          />
-        )}
+        <MenuItem
+          onClick={handleLogout}
+          icon={faSignOutAlt}
+          label="Logout"
+          isExpanded={isExpanded}
+        />
       </div>
     </div>
   );
