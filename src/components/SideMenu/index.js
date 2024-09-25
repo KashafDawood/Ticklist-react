@@ -9,6 +9,8 @@ import {
   faAngleLeft,
   faAngleRight,
   faUserCircle,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import getLoginUser from "../../API/UserAPI/getLoginUser";
 import "./style.css";
@@ -17,6 +19,44 @@ export default function SideMenu() {
   const [user, setUser] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   // const [activeMenu, setActiveMenu] = useState(null);
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const setDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  };
+
+  const setLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+  };
+
+  // const toggleDarkMode = () => {
+  //   setIsDarkMode(!isDarkMode);
+  //   document.body.classList.toggle("dark-mode", !isDarkMode);
+  // };
+
+  const toggleDarkMode = () => {
+    if (isDarkMode) {
+      setLightMode();
+      setIsDarkMode(false);
+    } else {
+      setDarkMode();
+      setIsDarkMode(true);
+    }
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setDarkMode();
+      setIsDarkMode(true);
+    } else {
+      setLightMode();
+      setIsDarkMode(false);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -78,6 +118,12 @@ export default function SideMenu() {
       </div>
 
       <div className="sidebar-footer">
+        <MenuItem
+          onClick={toggleDarkMode}
+          icon={isDarkMode ? faSun : faMoon}
+          label={isDarkMode ? "Light Mode" : "Dark Mode"}
+          isExpanded={isExpanded}
+        />
         <MenuItem
           onClick={handleLogout}
           icon={faSignOutAlt}
