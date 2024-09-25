@@ -18,7 +18,6 @@ import "./style.css";
 export default function SideMenu() {
   const [user, setUser] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  // const [activeMenu, setActiveMenu] = useState(null);
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -31,11 +30,6 @@ export default function SideMenu() {
     document.querySelector("body").setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light");
   };
-
-  // const toggleDarkMode = () => {
-  //   setIsDarkMode(!isDarkMode);
-  //   document.body.classList.toggle("dark-mode", !isDarkMode);
-  // };
 
   const toggleDarkMode = () => {
     if (isDarkMode) {

@@ -50,7 +50,11 @@
 
 .expanded-profile-info:hover {
   color: var(--wb);
-  background: linear-gradient(120deg, var(--accent-color), var(--link-color));
+  background: linear-gradient(
+    120deg,
+    var(--accent-color),
+    var(--button-bg-color)
+  );
 }
 
 .profile-name {
@@ -127,5 +131,7 @@
 }
 
 .sidebar-footer {
-  padding: 10px;
+  padding: 10px 0;
+  margin: 0 10px;
+  border-top: 1px solid var(--border-color);
 }
