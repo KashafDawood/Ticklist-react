@@ -31,7 +31,7 @@
 .pill-btn {
   padding: 5px 20px;
   font-size: 0.8rem;
-  border: 1px solid var(--bw);
+  border: 1px solid var(--border-color);
   border-radius: 30px;
   color: var(--primary-text-color);
   background-color: transparent;

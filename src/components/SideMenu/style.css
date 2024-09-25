@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
+  border: 1px solid var(--border-color);
 }
 
 .sidebar.expanded {

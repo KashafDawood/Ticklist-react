@@ -15,7 +15,7 @@
   margin: 0;
   display: grid;
   grid-template-columns: 0.1fr 1fr 0.2fr;
-  border: 1px solid var(--bw);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   gap: 5px;
   background-color: var(--background-color);
@@ -76,7 +76,7 @@
   font-size: 0.9rem;
   background-color: var(--priority-high);
   color: var(--wb);
-  border: 1px solid var(--bw);
+  border: 1px solid var(--border-color);
   text-align: center;
   padding: 8px 5px;
 }
