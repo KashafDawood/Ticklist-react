@@ -5,6 +5,7 @@ import Chat from "./../pages/Chat";
 import React from "react";
 import ProtectedRoutes from "./protectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
+import PrivateLayout from "../components/PrivateLayout";
 
 const privateRoutes = createBrowserRouter([
   {
@@ -12,29 +13,33 @@ const privateRoutes = createBrowserRouter([
     path: "/dashboard",
     element: (
       <ProtectedRoutes>
-        <Dashboard />
+        <PrivateLayout>
+          <Dashboard />
+        </PrivateLayout>
       </ProtectedRoutes>
     ),
-    children: [
-      {
-        id: "tasks",
-        path: "tasks",
-        element: (
-          <ProtectedRoutes>
-            <Tasks />
-          </ProtectedRoutes>
-        ),
-      },
-      {
-        id: "chat",
-        path: "chat",
-        element: (
-          <ProtectedRoutes>
-            <Chat />
-          </ProtectedRoutes>
-        ),
-      },
-    ],
+  },
+  {
+    id: "tasks",
+    path: "/tasks",
+    element: (
+      <ProtectedRoutes>
+        <PrivateLayout>
+          <Tasks />
+        </PrivateLayout>
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    id: "chat",
+    path: "/chat",
+    element: (
+      <ProtectedRoutes>
+        <PrivateLayout>
+          <Chat />
+        </PrivateLayout>
+      </ProtectedRoutes>
+    ),
   },
 ]);
 

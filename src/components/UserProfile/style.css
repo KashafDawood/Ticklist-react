@@ -1,0 +1,23 @@
+.userprofile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.user-setting > * {
+  padding-left: 20px;
+}
+
+.user-img {
+  font-size: 2.5rem;
+}
+
+.user-notification {
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  padding: 5px 8px;
+}
