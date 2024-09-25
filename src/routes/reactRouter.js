@@ -1,18 +1,16 @@
+// NormalRoutes.js
 import Home from "./../pages/Home";
 import Signup from "./../pages/Signup";
 import Login from "./../pages/Login";
-import Dashboard from "./../pages/Dashboard";
 import ForgetPassword from "./../pages/ForgetPassword";
-import Tasks from "./../pages/Tasks";
-import Chat from "./../pages/Chat";
 import Layout from "../components/Layout";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import ProtectedRoutes from "./protectedRoutes";
-// import { AuthProvider } from "./auth";
 import React from "react";
+import privateRoutes from "./PrivateRoutes";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
+const normalRoutes = createBrowserRouter([
   {
+    id: "home",
     path: "/",
     element: (
       <Layout>
@@ -21,6 +19,7 @@ const router = createBrowserRouter([
     ),
   },
   {
+    id: "signup",
     path: "/signup",
     element: (
       <Layout>
@@ -29,6 +28,7 @@ const router = createBrowserRouter([
     ),
   },
   {
+    id: "login",
     path: "/login",
     element: (
       <Layout>
@@ -37,6 +37,7 @@ const router = createBrowserRouter([
     ),
   },
   {
+    id: "forgetPassword",
     path: "/forgetPassword",
     element: (
       <Layout>
@@ -44,38 +45,19 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
-  {
-    path: "/dashboard",
-    element: (
-      // <ProtectedRoutes>
-      <Dashboard />
-      // </ProtectedRoutes>
-    ),
-    children: [
-      {
-        path: "tasks",
-        element: (
-          // <ProtectedRoutes>
-          <Tasks />
-          // </ProtectedRoutes>
-        ),
-      },
-      {
-        path: "chat",
-        element: (
-          // <ProtectedRoutes>
-          <Chat />
-          // </ProtectedRoutes>
-        ),
-      },
-    ],
-  },
 ]);
 
+const combinedRoutes = [
+  ...normalRoutes.routes.map((route) => ({
+    ...route,
+    id: `normal-${route.id}`,
+  })),
+  ...privateRoutes.routes.map((route) => ({
+    ...route,
+    id: `protected-${route.id}`,
+  })),
+];
+
 export default function AppRouter() {
-  return (
-    // <AuthProvider>
-    <RouterProvider router={router} />
-    // </AuthProvider>
-  );
+  return <RouterProvider router={createBrowserRouter(combinedRoutes)} />;
 }

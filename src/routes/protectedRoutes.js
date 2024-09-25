@@ -1,11 +1,15 @@
 import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
-import { useAuth } from "./auth"; // Import the useAuth hook
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoutes = () => {
-  const { isSignedIn } = useAuth(); // Check authentication status
+const isAuthenticated = () => {
+  return !!localStorage.getItem("userId");
+};
 
-  return isSignedIn ? <Outlet /> : <Navigate to="/login" />;
+const ProtectedRoutes = ({ children }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
 };
 
 export default ProtectedRoutes;
