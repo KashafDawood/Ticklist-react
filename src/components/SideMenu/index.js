@@ -6,7 +6,6 @@ import {
   faTasks,
   faBarsProgress,
   faSignOutAlt,
-  faAngleLeft,
   faAngleRight,
   faUserCircle,
   faSun,
@@ -68,12 +67,20 @@ export default function SideMenu() {
     window.location.href = "/login";
   }
 
-  const handleExpandToggle = () => {
-    setIsExpanded(!isExpanded);
+  const handleMouseEnter = () => {
+    setIsExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsExpanded(false);
   };
 
   return (
-    <div className={`sidebar ${isExpanded ? "expanded" : "collapsed"}`}>
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`sidebar ${isExpanded ? "expanded" : "collapsed"}`}
+    >
       <div className="sidebar-header">
         {!isExpanded ? (
           <div className="profile-info">
@@ -91,13 +98,13 @@ export default function SideMenu() {
             <FontAwesomeIcon icon={faAngleRight} />
           </div>
         )}
-        <div className="toggle-btn" onClick={handleExpandToggle}>
+        {/* <div className="toggle-btn" onClick={handleExpandToggle}>
           {isExpanded ? (
             <FontAwesomeIcon className="icon-wrapper" icon={faAngleLeft} />
           ) : (
             <FontAwesomeIcon className="icon-wrapper" icon={faAngleRight} />
           )}
-        </div>
+        </div> */}
       </div>
 
       <div className="sidebar-menu">

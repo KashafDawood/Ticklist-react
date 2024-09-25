@@ -1,10 +1,10 @@
 import { BottomNavbar } from "../../components/Navbar";
-import Tasks from "./../Tasks/";
+import SideMenu from "./../../components/SideMenu";
 
 export default function Dashboard() {
   return (
     <div>
-      <Tasks />
+      <SideMenu />
       <BottomNavbar />
     </div>
   );
