@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "./../../images/TicklistLogo.png";
 import {
   faHome,
   faMessage,
   faTasks,
   faBarsProgress,
   faSignOutAlt,
-  faAngleRight,
-  faUserCircle,
   faSun,
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
-import getLoginUser from "../../API/UserAPI/getLoginUser";
 import "./style.css";
 
 export default function SideMenu() {
-  const [user, setUser] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -51,17 +48,6 @@ export default function SideMenu() {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getLoginUser();
-        setUser(userData.data);
-      } catch (error) {}
-    };
-
-    fetchUser();
-  }, []);
-
   function handleLogout() {
     localStorage.removeItem("userId");
     window.location.href = "/login";
@@ -83,28 +69,15 @@ export default function SideMenu() {
     >
       <div className="sidebar-header">
         {!isExpanded ? (
-          <div className="profile-info">
-            <FontAwesomeIcon icon={faUserCircle} className="profile-pic" />
+          <div className="logo">
+            <img src={Logo} alt="Ticklist Logo" className="logo-img" />
           </div>
         ) : (
-          <div className="expanded-profile-info">
-            <FontAwesomeIcon
-              icon={faUserCircle}
-              className="profile-pic expanded-profile-pic"
-            />
-            <span className="profile-name">
-              {user?.name.toUpperCase().split(" ")[0]}
-            </span>
-            <FontAwesomeIcon icon={faAngleRight} />
+          <div className="expanded-logo">
+            <img src={Logo} alt="Ticklist Logo" className="logo-img" />
+            <span className="logo-text">TickList</span>
           </div>
         )}
-        {/* <div className="toggle-btn" onClick={handleExpandToggle}>
-          {isExpanded ? (
-            <FontAwesomeIcon className="icon-wrapper" icon={faAngleLeft} />
-          ) : (
-            <FontAwesomeIcon className="icon-wrapper" icon={faAngleRight} />
-          )}
-        </div> */}
       </div>
 
       <div className="sidebar-menu">
