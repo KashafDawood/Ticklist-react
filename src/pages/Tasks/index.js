@@ -1,9 +1,7 @@
-import { BottomNavbar } from "../../components/Navbar";
 import React, { useState, useEffect } from "react";
 import getUserTask from "../../API/TaskAPI/getUsertask";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import TaskList from "../../components/Tasks";
+import TaskList from "../../components/TaskList";
 import "./style.css";
 
 export default function Tasks() {
@@ -23,22 +21,10 @@ export default function Tasks() {
 
   return (
     <div>
-      <div className="dashboardContainer">
-        <TaskList tasks={tasks} />
-        <CalendarUI />
+      <div className="tasks-content">
+        <h1 className="content-title">To-Do List</h1>
       </div>
-      <BottomNavbar />
-    </div>
-  );
-}
-
-function CalendarUI() {
-  const [date, setDate] = useState(new Date());
-
-  return (
-    <div className="calendarContainer">
-      <Calendar onChange={setDate} value={date} />
-      <p>Selected date: {date.toDateString()}</p>
+      <TaskList tasks={tasks} />
     </div>
   );
 }

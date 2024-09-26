@@ -135,3 +135,7 @@ p {
   display: flex;
   align-items: center;
 }
+
+.content-title {
+  padding: 20px;
+}
