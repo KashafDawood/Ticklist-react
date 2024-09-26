@@ -1,6 +1,7 @@
 import SideMenu from "../SideMenu";
 import React from "react";
 import UserProfile from "../UserProfile";
+import "./style.css";
 
 const PrivateLayout = ({ children }) => {
   return (
@@ -10,8 +11,13 @@ const PrivateLayout = ({ children }) => {
         <UserProfile />
         <div className="main-content">{children}</div>
       </div>
+      <Sidebar />
     </div>
   );
 };
 
 export default PrivateLayout;
+
+export const Sidebar = ({ children }) => {
+  return <div className="sidebar">{children}</div>;
+};

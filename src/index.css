@@ -2,13 +2,13 @@
   /* Colors for Light Mode */
   --bw: #000;
   --wb: #fff;
-  --background-color: #f5f5f5;
+  --background-color: #f1f2f4;
   --primary-text-color: #333333;
   --oncolor-text-color: #333333;
   --secondary-text-color: #555555;
-  --accent-color: #6900cc;
+  --accent-color: #6e5dc6;
   --link-color: #1d72b8;
-  --button-bg-color: #7b2dc5;
+  --button-bg-color: #5e4db2;
   --button-text-color: #ffffff;
   --border-color: #cccccc;
   /* Success Alert */
@@ -37,13 +37,13 @@
   /* Colors for Dark Mode */
   --bw: #fff;
   --wb: #000;
-  --background-color: #1e1e1e;
+  --background-color: #22272b;
   --primary-text-color: #d4d4d4;
   --oncolor-text-color: #333333;
   --secondary-text-color: #888888;
-  --accent-color: #a6fe44;
+  --accent-color: #9f8fef;
   --link-color: #3794ff;
-  --button-bg-color: #98f829;
+  --button-bg-color: #b8acf6;
   --button-text-color: #ffffff;
   --border-color: #3c3c3c;
   /* Success Alert */

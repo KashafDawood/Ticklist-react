@@ -25,7 +25,7 @@ export default function UserProfile() {
           {user?.name.charAt(0).toUpperCase() +
             user?.name.split(" ")[0].slice(1)}
         </h2>
-        <p>Let's finish your task today!</p>
+        <p>Let's do the best today! 😃</p>
       </div>
       <div className="user-setting icon-wrapper">
         <span className="user-notification">

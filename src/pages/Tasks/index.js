@@ -4,7 +4,6 @@ import getUserTask from "../../API/TaskAPI/getUsertask";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import TaskList from "../../components/Tasks";
-import SideMenu from "../../components/SideMenu";
 import "./style.css";
 
 export default function Tasks() {
@@ -25,7 +24,6 @@ export default function Tasks() {
   return (
     <div>
       <div className="dashboardContainer">
-        <SideMenu />
         <TaskList tasks={tasks} />
         <CalendarUI />
       </div>
