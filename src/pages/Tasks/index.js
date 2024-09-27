@@ -5,14 +5,18 @@ import TaskList from "../../components/TaskList";
 import "./style.css";
 
 export default function Tasks() {
+  const [isNoTask, setIsNoTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getUserTask();
         setTasks(res.data.data.doc);
       } catch (err) {
-        console.log(err);
+        if (err.status === 404) {
+          setIsNoTask(true);
+        }
       }
     };
 
@@ -24,7 +28,7 @@ export default function Tasks() {
       <div className="tasks-content">
         <h1 className="content-title">To-Do List</h1>
       </div>
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} isNoTask={isNoTask} />
     </div>
   );
 }
