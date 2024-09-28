@@ -27,6 +27,7 @@ export default function Tasks() {
     <div>
       <div className="tasks-content">
         <h1 className="content-title">To-Do List</h1>
+        <button className="add-task-btn">+Add Task</button>
       </div>
       <TaskList tasks={tasks} isNoTask={isNoTask} />
     </div>

@@ -1,3 +1,23 @@
+.tasks-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-task-btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px dashed var(--accent-color);
+  color: var(--accent-color);
+  margin-right: 10px;
+}
+
+.add-task-btn:hover {
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+}
+
 button {
   background-color: var(--button-bg-color);
   color: var(--primary-text-color);
