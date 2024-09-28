@@ -1,5 +1,5 @@
 .privateLayout-container {
   display: grid;
-  grid-template-columns: 0.1fr 6fr 2fr;
+  grid-template-columns: 0.1fr 6fr;
   margin: 20px;
 }

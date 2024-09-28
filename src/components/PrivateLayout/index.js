@@ -11,13 +11,8 @@ const PrivateLayout = ({ children }) => {
         <UserProfile />
         <div className="main-content">{children}</div>
       </div>
-      <Sidebar />
     </div>
   );
 };
 
 export default PrivateLayout;
-
-export const Sidebar = ({ children }) => {
-  return <div className="sidebar">{children}</div>;
-};
