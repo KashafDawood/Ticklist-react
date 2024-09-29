@@ -8,6 +8,15 @@ import "./style.css";
 export default function Tasks() {
   const [isNoTask, setIsNoTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleExpanded() {
+    setIsOpen(true);
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,10 +37,16 @@ export default function Tasks() {
     <div>
       <div className="tasks-content">
         <h1 className="content-title">To-Do List</h1>
-        <button className="add-task-btn">+Add Task</button>
+        <button className="add-task-btn" onClick={handleExpanded}>
+          +Add Task
+        </button>
       </div>
-      <TaskList tasks={tasks} isNoTask={isNoTask} />
-      <TaskForm />
+      <TaskList
+        tasks={tasks}
+        isNoTask={isNoTask}
+        handleExpanded={handleExpanded}
+      />
+      <TaskForm isOpen={isOpen} onClose={handleClose} />
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { Btn, InputField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function TaskForm() {
+export default function TaskForm({ isOpen, onClose }) {
   const {
     register,
     handleSubmit,
@@ -55,14 +56,14 @@ export default function TaskForm() {
       },
     },
     {
+      as: "textarea",
       name: "description",
-      type: "textarea",
       placeholder: "Description",
       validation: {},
     },
     {
       name: "category",
-      type: "select",
+      as: "select",
       options: ["General", "Personal", "Work", "Study"],
       validation: {
         required: "Category is required",
@@ -70,7 +71,7 @@ export default function TaskForm() {
     },
     {
       name: "priority",
-      type: "select",
+      as: "select",
       options: ["Low", "Medium", "High"],
       validation: {
         required: "Priority is required",
@@ -78,7 +79,7 @@ export default function TaskForm() {
     },
     {
       name: "status",
-      type: "select",
+      as: "select",
       options: ["Todo", "InProgress", "Complete"],
       validation: {
         required: "Status is required",
@@ -98,8 +99,17 @@ export default function TaskForm() {
   ];
 
   return (
-    <div className="TaskFormContainer">
-      <h1>Create a New Task</h1>
+    <div className={`TaskFormContainer ${isOpen ? "expanded" : ""}`}>
+      <div className="taskform-header">
+        <h1>Create a New Task</h1>
+        <div className="icon-wrapper">
+          <FontAwesomeIcon
+            onClick={onClose}
+            className="close-icon"
+            icon={["fas", "close"]}
+          />
+        </div>
+      </div>
       <form onSubmit={handleSubmit()}>
         {fields.map((field) => (
           <InputField

@@ -1,10 +1,30 @@
+/* style.css */
 .TaskFormContainer {
   padding: 30px;
-  width: 400px;
+  width: 0px;
   height: 100%;
   position: absolute;
-  right: 0;
+  right: -100px;
   top: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--acrylic-background);
   backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.TaskFormContainer.expanded {
+  width: 400px;
+  right: 0;
+}
+
+.taskform-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.close-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
 }

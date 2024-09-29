@@ -120,7 +120,7 @@ library.add(fas);
 //   },
 // ];
 
-export default function TaskList({ tasks, isNoTask }) {
+export default function TaskList({ tasks, isNoTask, handleExpanded }) {
   return (
     <div className="task-list-container">
       <div className="task-type">
@@ -130,11 +130,11 @@ export default function TaskList({ tasks, isNoTask }) {
         <PillBtn>Complete</PillBtn>
       </div>
       {isNoTask ? (
-        <AddTaskBtn />
+        <AddTaskBtn onClick={handleExpanded} />
       ) : (
         <div className="task-list">
           {tasks.map((task, index) => (
-            <TaskItem key={index} task={task} />
+            <TaskItem key={index} task={task} onClick={handleExpanded} />
           ))}
         </div>
       )}
@@ -188,12 +188,14 @@ function TaskItem({ task }) {
   );
 }
 
-function AddTaskBtn() {
+function AddTaskBtn({ onClick }) {
   return (
     <>
       <div class="empty-task-message">
         <p>Add your first task to get started! </p>
-        <span className="addTaskBtn">+Add Task</span>
+        <span className="addTaskBtn" onClick={onClick}>
+          +Add Task
+        </span>
       </div>
     </>
   );

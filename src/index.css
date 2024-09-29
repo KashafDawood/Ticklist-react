@@ -2,6 +2,7 @@
   /* Colors for Light Mode */
   --bw: #000;
   --wb: #fff;
+  --acrylic-background: rgba(255, 255, 255, 0.8);
   --background-color: #f1f2f4;
   --primary-text-color: #333333;
   --oncolor-text-color: #333333;
@@ -37,6 +38,7 @@
   /* Colors for Dark Mode */
   --bw: #fff;
   --wb: #000;
+  --acrylic-background: rgba(0, 0, 0, 0.5);
   --background-color: #22272b;
   --primary-text-color: #d4d4d4;
   --oncolor-text-color: #333333;
@@ -80,6 +82,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
 }
 
 code {
