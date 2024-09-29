@@ -2,26 +2,27 @@
   padding: 10px;
   width: 100%;
   background-color: var(--button-bg-color);
-  color: white;
+  color: var(--wb);
   border: 1px solid var(--border-color);
 }
 
 .btn:hover {
   background-color: var(--accent-color);
-  color: white;
   transition: 0.7s;
   cursor: pointer;
 }
 
 .input {
   background-color: transparent;
-  color: var(--primary-text-color);
+  color: var(--bw);
+  fill: var(--bw);
   padding: 10px;
   width: 100%;
   max-width: 95%;
   display: block;
   margin: 10px 0;
   border: 1px solid var(--border-color);
+  border-radius: 5px;
 }
 
 .input:focus {
@@ -45,4 +46,17 @@
 .pill-btn .active {
   color: var(--wb);
   background-color: var(--accent-color);
+}
+
+.textarea {
+  height: 150px;
+}
+
+.select {
+  width: 30%;
+}
+
+.select option {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
 }

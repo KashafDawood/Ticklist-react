@@ -1,45 +1,29 @@
 import { useForm } from "react-hook-form";
-import { Btn, InputField } from "../../components/Utility";
+import { Btn, FormField } from "../../components/Utility"; // Assuming FormField is used for buttons/select options
 import Alerts from "../../components/Alerts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function TaskForm({ isOpen, onClose }) {
+export default function TaskForm({ isOpen, onClose, task = {} }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setError,
-    reset,
-  } = useForm();
-  const navigate = useNavigate();
+    // setValue, // Used for pre-filling values
+  } = useForm({
+    defaultValues: {
+      title: task.title || "",
+      description: task.description || "",
+      deadline: task.deadline || "",
+      category: task.category || "General",
+      priority: task.priority || "Medium",
+      status: task.status || "Todo",
+    },
+  });
 
-  // const onSubmit = async (data) => {
-  //   try {
-  //     const response = await createTask(data);
-  //     if (response.status === 201) {
-  //       // Navigate to some task list page or show a success message
-  //       navigate("/tasks");
-  //     }
-  //     reset();
-  //   } catch (err) {
-  //     if (!err.response) {
-  //       // Network or other error (e.g., no response from server)
-  //       setError("root", {
-  //         type: "manual",
-  //         message:
-  //           "Network error: Unable to reach the server. Please try again later.",
-  //       });
-  //     } else {
-  //       // Handle API response errors
-  //       setError("root", {
-  //         type: "manual",
-  //         message: "Something went wrong! Please try again later.",
-  //       });
-  //     }
-  //   }
-  // };
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
 
   // Define the fields for the form
   const fields = [
@@ -62,30 +46,6 @@ export default function TaskForm({ isOpen, onClose }) {
       validation: {},
     },
     {
-      name: "category",
-      as: "select",
-      options: ["General", "Personal", "Work", "Study"],
-      validation: {
-        required: "Category is required",
-      },
-    },
-    {
-      name: "priority",
-      as: "select",
-      options: ["Low", "Medium", "High"],
-      validation: {
-        required: "Priority is required",
-      },
-    },
-    {
-      name: "status",
-      as: "select",
-      options: ["Todo", "InProgress", "Complete"],
-      validation: {
-        required: "Status is required",
-      },
-    },
-    {
       name: "deadline",
       type: "datetime-local",
       placeholder: "Deadline",
@@ -96,12 +56,30 @@ export default function TaskForm({ isOpen, onClose }) {
           "Deadline must be in the future or null",
       },
     },
+    {
+      name: "category",
+      as: "select", // Now as a button-like select option
+      options: ["General", "Personal", "Work", "Study"],
+      validation: {},
+    },
+    {
+      name: "priority",
+      as: "select", // Now as a button-like select option
+      options: ["Low", "Medium", "High"],
+      validation: {},
+    },
+    {
+      name: "status",
+      as: "select", // Now as a button-like select option
+      options: ["Todo", "InProgress", "Complete"],
+      validation: {},
+    },
   ];
 
   return (
     <div className={`TaskFormContainer ${isOpen ? "expanded" : ""}`}>
       <div className="taskform-header">
-        <h1>Create a New Task</h1>
+        <h1>{task.title ? "Update Task" : "Create a New Task"}</h1>
         <div className="icon-wrapper">
           <FontAwesomeIcon
             onClick={onClose}
@@ -110,20 +88,25 @@ export default function TaskForm({ isOpen, onClose }) {
           />
         </div>
       </div>
-      <form onSubmit={handleSubmit()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field) => (
-          <InputField
+          <FormField
             key={field.name}
-            name={field.name}
+            as={field.as || "input"}
             type={field.type}
             placeholder={field.placeholder}
             register={register}
+            name={field.name}
             validation={field.validation}
-            options={field.options} // For select fields
+            options={field.options} // For select fields, these will be buttons
           />
         ))}
         <Btn disable={isSubmitting}>
-          {isSubmitting ? "Loading..." : "Add Task"}
+          {isSubmitting
+            ? "Loading..."
+            : task.title
+            ? "Update Task"
+            : "Add Task"}
         </Btn>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>

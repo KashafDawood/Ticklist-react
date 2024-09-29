@@ -191,7 +191,7 @@ function TaskItem({ task }) {
 function AddTaskBtn({ onClick }) {
   return (
     <>
-      <div class="empty-task-message">
+      <div className="empty-task-message">
         <p>Add your first task to get started! </p>
         <span className="addTaskBtn" onClick={onClick}>
           +Add Task

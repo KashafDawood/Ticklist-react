@@ -8,7 +8,22 @@ export function Btn({ children, onClick, disable }) {
   );
 }
 
-export function InputField({
+export function InputField({ type, placeholder, register, name, validation }) {
+  return (
+    <input
+      className="input"
+      {...register(name, validation)}
+      type={type}
+      placeholder={placeholder}
+    />
+  );
+}
+
+export function PillBtn({ children }) {
+  return <button className="pill-btn">{children}</button>;
+}
+
+export function FormField({
   as = "input",
   type,
   placeholder,
@@ -20,10 +35,10 @@ export function InputField({
   switch (as) {
     case "select":
       return (
-        <select className="input" {...register(name, validation)}>
+        <select className="input select" {...register(name, validation)}>
           {options.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
+            <option key={index} value={option}>
+              {option}
             </option>
           ))}
         </select>
@@ -32,7 +47,7 @@ export function InputField({
     case "textarea":
       return (
         <textarea
-          className="input"
+          className="input textarea"
           {...register(name, validation)}
           placeholder={placeholder}
         />
@@ -48,8 +63,4 @@ export function InputField({
         />
       );
   }
-}
-
-export function PillBtn({ children }) {
-  return <button className="pill-btn">{children}</button>;
 }
