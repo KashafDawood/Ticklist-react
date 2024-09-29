@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import getUserTask from "../../API/TaskAPI/getUsertask";
 import "react-calendar/dist/Calendar.css";
 import TaskList from "../../components/TaskList";
+import TaskForm from "../../components/TaskForm";
 import "./style.css";
 
 export default function Tasks() {
@@ -30,6 +31,7 @@ export default function Tasks() {
         <button className="add-task-btn">+Add Task</button>
       </div>
       <TaskList tasks={tasks} isNoTask={isNoTask} />
+      <TaskForm />
     </div>
   );
 }
