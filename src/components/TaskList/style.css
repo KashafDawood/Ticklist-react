@@ -58,7 +58,8 @@
 }
 
 .task-details > * {
-  margin-top: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   font-size: 0.8rem;
   background-color: var(--accent-color);
   color: var(--wb);
