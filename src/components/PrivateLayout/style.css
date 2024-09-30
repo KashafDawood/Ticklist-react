@@ -1,5 +1,9 @@
 .privateLayout-container {
-  display: grid;
-  grid-template-columns: 0.1fr 6fr;
+  display: flex;
   margin: 20px;
+}
+
+.privateLayout-main {
+  margin-left: 80px;
+  width: 100%;
 }

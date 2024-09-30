@@ -1,6 +1,7 @@
 .sidebar {
   margin: 0 10px;
-  background-color: var(--background-color);
+  background-color: var(--acrlyic-background);
+  backdrop-filter: blur(20px);
   color: var(--primary-text-color);
   width: 60px;
   height: 94vh;
@@ -11,6 +12,7 @@
   justify-content: space-between;
   border-radius: 10px;
   border: 1px solid var(--border-color);
+  position: fixed;
 }
 
 .sidebar.expanded {
