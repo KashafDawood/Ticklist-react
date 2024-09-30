@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Btn, FormField } from "../../components/Utility"; // Assuming FormField is used for buttons/select options
+import { Btn, FormField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import createToDo from "./../../API/TaskAPI/createToDo";
 import "./style.css";
 
-export default function TaskForm({ isOpen, onClose, task = {} }) {
+export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    // setValue, // Used for pre-filling values
+    setError,
+    reset,
   } = useForm({
     defaultValues: {
       title: task.title || "",
@@ -22,7 +24,28 @@ export default function TaskForm({ isOpen, onClose, task = {} }) {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const response = await createToDo(data);
+      console.log(data);
+      console.log(response);
+      reset();
+      onClose();
+      onAddTask();
+    } catch (err) {
+      if (!err.response) {
+        // Network or other error (e.g., no response from server)
+        setError("root", {
+          type: "manual",
+          message:
+            "Network error: Unable to reach the server. Please try again later.",
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: "Something went wrong! Please try again later.",
+        });
+      }
+    }
   };
 
   // Define the fields for the form

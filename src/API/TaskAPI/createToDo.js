@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function createToDO(data) {
+export default async function createToDo(data) {
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}tasks/`,

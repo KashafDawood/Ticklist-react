@@ -18,20 +18,24 @@ export default function Tasks() {
     setIsOpen(false);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getUserTask();
-        setTasks(res.data.data.doc);
-      } catch (err) {
-        if (err.status === 404) {
-          setIsNoTask(true);
-        }
+  const fetchData = async () => {
+    try {
+      const res = await getUserTask();
+      setTasks(res.data.data.doc);
+    } catch (err) {
+      if (err.status === 404) {
+        setIsNoTask(true);
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  function handleAddTask() {
+    fetchData();
+  }
 
   return (
     <div>
@@ -46,7 +50,11 @@ export default function Tasks() {
         isNoTask={isNoTask}
         handleExpanded={handleExpanded}
       />
-      <TaskForm isOpen={isOpen} onClose={handleClose} />
+      <TaskForm
+        isOpen={isOpen}
+        onClose={handleClose}
+        onAddTask={handleAddTask}
+      />
     </div>
   );
 }
