@@ -4,12 +4,14 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkMode from "./../DarkMode";
 import { useEffect, useState } from "react";
+import userLogout from "../../API/UserAPI/userLogout";
 import getLoginUser from "./../../API/UserAPI/getLoginUser";
 import "./style.css";
 
 library.add(fas);
 
-function handleLogout() {
+async function handleLogout() {
+  await userLogout();
   localStorage.removeItem("userId");
   window.location.href = "/login";
 }

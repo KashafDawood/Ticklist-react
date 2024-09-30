@@ -11,6 +11,7 @@ import {
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
+import userLogout from "../../API/UserAPI/userLogout";
 
 export default function SideMenu() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -48,7 +49,8 @@ export default function SideMenu() {
     }
   }, []);
 
-  function handleLogout() {
+  async function handleLogout() {
+    await userLogout();
     localStorage.removeItem("userId");
     window.location.href = "/login";
   }
