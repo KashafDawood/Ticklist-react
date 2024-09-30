@@ -54,6 +54,11 @@
 
 .select {
   width: 30%;
+  display: inline-block;
+}
+
+.select:nth-child(odd) {
+  margin: 0 20px;
 }
 
 .select option {
