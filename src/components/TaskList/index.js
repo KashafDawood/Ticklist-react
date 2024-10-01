@@ -180,6 +180,9 @@ function TaskItem({ task }) {
         </div>
       </div>
       <div className="task_btn">
+        <div className="update-btn">
+          <FontAwesomeIcon className="update-icon" icon={["fas", "ellipsis"]} />
+        </div>
         <div className={`task-status task-status-${task.status.toLowerCase()}`}>
           {task.status}
         </div>

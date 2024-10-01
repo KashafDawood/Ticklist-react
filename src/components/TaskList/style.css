@@ -97,6 +97,24 @@
   gap: 20px;
 }
 
+.task_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.update-btn {
+  text-align: end;
+  margin-top: -20px;
+  padding: 0 10px;
+}
+
+.update-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .empty-task-message {
   display: flex;
   flex-direction: row;
