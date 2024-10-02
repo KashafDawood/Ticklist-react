@@ -9,6 +9,7 @@ export default function Tasks() {
   const [isNoTask, setIsNoTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState({});
 
   function handleExpanded() {
     setIsOpen(true);
@@ -49,11 +50,13 @@ export default function Tasks() {
         tasks={tasks}
         isNoTask={isNoTask}
         handleExpanded={handleExpanded}
+        setSelectedTask={setSelectedTask}
       />
       <TaskForm
         isOpen={isOpen}
         onClose={handleClose}
         onAddTask={handleAddTask}
+        task={selectedTask}
       />
     </div>
   );

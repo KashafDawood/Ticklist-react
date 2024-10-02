@@ -3,9 +3,10 @@ import { Btn, FormField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import createToDo from "./../../API/TaskAPI/createToDo";
+import { useEffect } from "react";
 import "./style.css";
 
-export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
+export default function TaskForm({ isOpen, onClose, onAddTask, task }) {
   const {
     register,
     handleSubmit,
@@ -14,26 +15,35 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
     reset,
   } = useForm({
     defaultValues: {
-      title: task.title || "",
-      description: task.description || "",
-      deadline: task.deadline || "",
-      category: task.category || "General",
-      priority: task.priority || "Medium",
-      status: task.status || "Todo",
+      title: task?.title || "",
+      description: task?.description || "",
+      deadline: task?.deadline || "",
+      category: task?.category || "General",
+      priority: task?.priority || "Medium",
+      status: task?.status || "Todo",
     },
   });
+
+  // Update form values whenever the task prop changes
+  useEffect(() => {
+    reset({
+      title: task?.title || "",
+      description: task?.description || "",
+      deadline: task?.deadline || "",
+      category: task?.category || "General",
+      priority: task?.priority || "Medium",
+      status: task?.status || "Todo",
+    });
+  }, [task, reset]); // Dependency array with task and reset function
 
   const onSubmit = async (data) => {
     try {
       const response = await createToDo(data);
-      console.log(data);
-      console.log(response);
-      reset();
+      reset(); // Clear form after successful submission
       onClose();
       onAddTask();
     } catch (err) {
       if (!err.response) {
-        // Network or other error (e.g., no response from server)
         setError("root", {
           type: "manual",
           message:
@@ -48,7 +58,6 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
     }
   };
 
-  // Define the fields for the form
   const fields = [
     {
       name: "title",
@@ -81,19 +90,19 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
     },
     {
       name: "category",
-      as: "select", // Now as a button-like select option
+      as: "select",
       options: ["General", "Personal", "Work", "Study"],
       validation: {},
     },
     {
       name: "priority",
-      as: "select", // Now as a button-like select option
+      as: "select",
       options: ["Low", "Medium", "High"],
       validation: {},
     },
     {
       name: "status",
-      as: "select", // Now as a button-like select option
+      as: "select",
       options: ["Todo", "InProgress", "Complete"],
       validation: {},
     },
@@ -102,7 +111,7 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
   return (
     <div className={`TaskFormContainer ${isOpen ? "expanded" : ""}`}>
       <div className="taskform-header">
-        <h1>{task.title ? "Update Task" : "Create a New Task"}</h1>
+        <h1>{task?.title ? "Update Task" : "Create a New Task"}</h1>
         <div className="icon-wrapper">
           <FontAwesomeIcon
             onClick={onClose}
@@ -121,13 +130,13 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task = {} }) {
             register={register}
             name={field.name}
             validation={field.validation}
-            options={field.options} // For select fields, these will be buttons
+            options={field.options}
           />
         ))}
         <Btn disable={isSubmitting}>
           {isSubmitting
             ? "Loading..."
-            : task.title
+            : task?.title
             ? "Update Task"
             : "Add Task"}
         </Btn>

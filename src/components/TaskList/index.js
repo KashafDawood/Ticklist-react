@@ -120,7 +120,12 @@ library.add(fas);
 //   },
 // ];
 
-export default function TaskList({ tasks, isNoTask, handleExpanded }) {
+export default function TaskList({
+  tasks,
+  isNoTask,
+  handleExpanded,
+  setSelectedTask,
+}) {
   return (
     <div className="task-list-container">
       <div className="task-type">
@@ -134,7 +139,12 @@ export default function TaskList({ tasks, isNoTask, handleExpanded }) {
       ) : (
         <div className="task-list">
           {tasks.map((task, index) => (
-            <TaskItem key={index} task={task} onClick={handleExpanded} />
+            <TaskItem
+              key={index}
+              task={task}
+              handleExpanded={handleExpanded}
+              setSelectedTask={setSelectedTask}
+            />
           ))}
         </div>
       )}
@@ -142,7 +152,12 @@ export default function TaskList({ tasks, isNoTask, handleExpanded }) {
   );
 }
 
-function TaskItem({ task }) {
+function TaskItem({ task, handleExpanded, setSelectedTask }) {
+  function onClick(clickedTask) {
+    setSelectedTask(clickedTask);
+    handleExpanded();
+  }
+
   return (
     <div className={`taskItem_container`}>
       <div
@@ -181,7 +196,11 @@ function TaskItem({ task }) {
       </div>
       <div className="task_btn">
         <div className="update-btn">
-          <FontAwesomeIcon className="update-icon" icon={["fas", "ellipsis"]} />
+          <FontAwesomeIcon
+            onClick={() => onClick(task)}
+            className="update-icon"
+            icon={["fas", "ellipsis"]}
+          />
         </div>
         <div className={`task-status task-status-${task.status.toLowerCase()}`}>
           {task.status}
