@@ -49,6 +49,7 @@ export default function TaskForm({
       reset();
       onClose();
       onAddTask();
+      setSelectedTask({});
     } catch (err) {
       if (!err.response) {
         setError("root", {
@@ -71,6 +72,7 @@ export default function TaskForm({
       reset();
       onClose();
       onAddTask();
+      setSelectedTask({});
     } catch (err) {
       if (!err.response) {
         setError("root", {
