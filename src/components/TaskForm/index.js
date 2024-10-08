@@ -6,7 +6,13 @@ import createToDo from "./../../API/TaskAPI/createToDo";
 import { useEffect } from "react";
 import "./style.css";
 
-export default function TaskForm({ isOpen, onClose, onAddTask, task }) {
+export default function TaskForm({
+  isOpen,
+  onClose,
+  onAddTask,
+  task,
+  setSelectedTask,
+}) {
   const {
     register,
     handleSubmit,
@@ -34,11 +40,11 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task }) {
       priority: task?.priority || "Medium",
       status: task?.status || "Todo",
     });
-  }, [task, reset]); // Dependency array with task and reset function
+  }, [task, reset]);
 
   const onSubmit = async (data) => {
     try {
-      const response = await createToDo(data);
+      await createToDo(data);
       reset(); // Clear form after successful submission
       onClose();
       onAddTask();
@@ -108,13 +114,18 @@ export default function TaskForm({ isOpen, onClose, onAddTask, task }) {
     },
   ];
 
+  function handleCloseBtn() {
+    setSelectedTask({});
+    onClose();
+  }
+
   return (
     <div className={`TaskFormContainer ${isOpen ? "expanded" : ""}`}>
       <div className="taskform-header">
         <h1>{task?.title ? "Update Task" : "Create a New Task"}</h1>
         <div className="icon-wrapper">
           <FontAwesomeIcon
-            onClick={onClose}
+            onClick={handleCloseBtn}
             className="close-icon"
             icon={["fas", "close"]}
           />

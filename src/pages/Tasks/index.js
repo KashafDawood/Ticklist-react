@@ -57,6 +57,7 @@ export default function Tasks() {
         onClose={handleClose}
         onAddTask={handleAddTask}
         task={selectedTask}
+        setSelectedTask={setSelectedTask}
       />
     </div>
   );
