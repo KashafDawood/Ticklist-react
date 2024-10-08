@@ -131,7 +131,7 @@ export default function TaskForm({
           />
         </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         {fields.map((field) => (
           <FormField
             key={field.name}
@@ -144,7 +144,7 @@ export default function TaskForm({
             options={field.options}
           />
         ))}
-        <Btn disable={isSubmitting}>
+        <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
           {isSubmitting
             ? "Loading..."
             : task?.title
