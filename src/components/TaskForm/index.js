@@ -3,6 +3,7 @@ import { Btn, FormField } from "../../components/Utility";
 import Alerts from "../../components/Alerts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import createToDo from "./../../API/TaskAPI/createToDo";
+import updateTask from "../../API/TaskAPI/updateTask";
 import { useEffect } from "react";
 import "./style.css";
 
@@ -45,7 +46,29 @@ export default function TaskForm({
   const onSubmit = async (data) => {
     try {
       await createToDo(data);
-      reset(); // Clear form after successful submission
+      reset();
+      onClose();
+      onAddTask();
+    } catch (err) {
+      if (!err.response) {
+        setError("root", {
+          type: "manual",
+          message:
+            "Network error: Unable to reach the server. Please try again later.",
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: "Something went wrong! Please try again later.",
+        });
+      }
+    }
+  };
+
+  const onUpdate = async (data) => {
+    try {
+      await updateTask(data, task._id);
+      reset();
       onClose();
       onAddTask();
     } catch (err) {
@@ -144,13 +167,15 @@ export default function TaskForm({
             options={field.options}
           />
         ))}
-        <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
-          {isSubmitting
-            ? "Loading..."
-            : task?.title
-            ? "Update Task"
-            : "Add Task"}
-        </Btn>
+        {!task.title ? (
+          <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
+            {isSubmitting ? "Loading..." : "Add Task"}
+          </Btn>
+        ) : (
+          <Btn onClick={handleSubmit(onUpdate)} disable={isSubmitting}>
+            {isSubmitting ? "Loading..." : "Update Task"}
+          </Btn>
+        )}
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
     </div>
