@@ -28,3 +28,12 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn {
+  background-color: var(--priority-high);
+}

@@ -169,15 +169,20 @@ export default function TaskForm({
             options={field.options}
           />
         ))}
-        {!task.title ? (
-          <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Add Task"}
+        <div className="btn-container">
+          {!task.title ? (
+            <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
+              {isSubmitting ? "Loading..." : "Add Task"}
+            </Btn>
+          ) : (
+            <Btn onClick={handleSubmit(onUpdate)} disable={isSubmitting}>
+              {isSubmitting ? "Loading..." : "Update Task"}
+            </Btn>
+          )}
+          <Btn className="delete-btn" disable={isSubmitting}>
+            {isSubmitting ? "Loading..." : "Delete Task"}
           </Btn>
-        ) : (
-          <Btn onClick={handleSubmit(onUpdate)} disable={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Update Task"}
-          </Btn>
-        )}
+        </div>
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
     </div>
