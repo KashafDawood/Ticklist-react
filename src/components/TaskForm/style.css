@@ -36,4 +36,10 @@
 
 .delete-btn {
   background-color: var(--priority-high);
+  color: var(--wb);
+  width: 100%;
+}
+
+.delete-btn:hover {
+  background-color: rgb(202, 59, 59);
 }

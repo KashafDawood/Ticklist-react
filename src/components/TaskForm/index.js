@@ -6,6 +6,7 @@ import createToDo from "./../../API/TaskAPI/createToDo";
 import updateTask from "../../API/TaskAPI/updateTask";
 import { useEffect } from "react";
 import "./style.css";
+import deleteTask from "../../API/TaskAPI/deleteTask";
 
 export default function TaskForm({
   isOpen,
@@ -69,6 +70,29 @@ export default function TaskForm({
   const onUpdate = async (data) => {
     try {
       await updateTask(data, task._id);
+      reset();
+      onClose();
+      onAddTask();
+      setSelectedTask({});
+    } catch (err) {
+      if (!err.response) {
+        setError("root", {
+          type: "manual",
+          message:
+            "Network error: Unable to reach the server. Please try again later.",
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: "Something went wrong! Please try again later.",
+        });
+      }
+    }
+  };
+
+  const onDelete = async (data) => {
+    try {
+      await deleteTask(data, task._id);
       reset();
       onClose();
       onAddTask();
@@ -169,20 +193,26 @@ export default function TaskForm({
             options={field.options}
           />
         ))}
-        <div className="btn-container">
-          {!task.title ? (
-            <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
-              {isSubmitting ? "Loading..." : "Add Task"}
-            </Btn>
-          ) : (
+
+        {!task.title ? (
+          <Btn onClick={handleSubmit(onSubmit)} disable={isSubmitting}>
+            {isSubmitting ? "Loading..." : "Add Task"}
+          </Btn>
+        ) : (
+          <div className="btn-container">
             <Btn onClick={handleSubmit(onUpdate)} disable={isSubmitting}>
               {isSubmitting ? "Loading..." : "Update Task"}
             </Btn>
-          )}
-          <Btn className="delete-btn" disable={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Delete Task"}
-          </Btn>
-        </div>
+            <button
+              onClick={handleSubmit(onDelete)}
+              className="delete-btn"
+              disable={isSubmitting}
+            >
+              {isSubmitting ? "Loading..." : "Delete Task"}
+            </button>
+          </div>
+        )}
+
         {errors && Object.keys(errors).length > 0 && <Alerts errors={errors} />}
       </form>
     </div>
