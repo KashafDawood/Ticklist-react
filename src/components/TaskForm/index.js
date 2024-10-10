@@ -201,14 +201,14 @@ export default function TaskForm({
         ) : (
           <div className="btn-container">
             <Btn onClick={handleSubmit(onUpdate)} disable={isSubmitting}>
-              {isSubmitting ? "Loading..." : "Update Task"}
+              Update Task
             </Btn>
             <button
               onClick={handleSubmit(onDelete)}
               className="delete-btn"
               disable={isSubmitting}
             >
-              {isSubmitting ? "Loading..." : "Delete Task"}
+              Delete Task
             </button>
           </div>
         )}
