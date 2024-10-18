@@ -19,8 +19,12 @@ export function InputField({ type, placeholder, register, name, validation }) {
   );
 }
 
-export function PillBtn({ children }) {
-  return <button className="pill-btn">{children}</button>;
+export function PillBtn({ children, onClick, className }) {
+  return (
+    <button className={`pill-btn ${className}`} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 export function FormField({

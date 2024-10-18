@@ -138,3 +138,8 @@
 .addTaskBtn:hover {
   border-bottom: 3px solid var(--accent-color);
 }
+
+.active {
+  background-color: var(--accent-color);
+  color: var(--wb);
+}
