@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PillBtn } from "../Utility";
+import Spinner from "../Loader";
 import "./style.css";
 
 library.add(fas);
@@ -17,6 +18,7 @@ export default function TaskList({
   setSelectedTask,
   activeButton,
   setActiveButton,
+  isLoading,
 }) {
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -39,7 +41,9 @@ export default function TaskList({
           </PillBtn>
         ))}
       </div>
-      {isNoFilterTask ? (
+      {isLoading ? (
+        <Spinner />
+      ) : isNoFilterTask ? (
         <div className="empty-task-message">
           There is no task with {activeButton} status yet!
         </div>

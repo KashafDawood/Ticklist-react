@@ -12,6 +12,7 @@ export default function Tasks() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState({});
   const [activeButton, setActiveButton] = useState("All");
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleExpanded() {
     setIsOpen(true);
@@ -23,14 +24,18 @@ export default function Tasks() {
 
   const fetchData = React.useCallback(async () => {
     try {
+      setIsLoading(true);
       const res = await getUserTask(activeButton);
       setTasks(res.data.data.doc);
     } catch (err) {
+      setIsLoading(false);
       if (err.status === 404 && activeButton === "All") {
         setIsNoTask(true);
       } else if (err.status === 404) {
         setIsNoFilterTask(true);
       }
+    } finally {
+      setIsLoading(false);
     }
   }, [activeButton]);
 
@@ -60,6 +65,7 @@ export default function Tasks() {
         setSelectedTask={setSelectedTask}
         activeButton={activeButton}
         setActiveButton={setActiveButton}
+        isLoading={isLoading}
       />
       <TaskForm
         isOpen={isOpen}
