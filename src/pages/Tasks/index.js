@@ -7,6 +7,7 @@ import "./style.css";
 
 export default function Tasks() {
   const [isNoTask, setIsNoTask] = useState(false);
+  const [isNoFilterTask, setIsNoFilterTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState({});
@@ -25,15 +26,17 @@ export default function Tasks() {
       const res = await getUserTask(activeButton);
       setTasks(res.data.data.doc);
     } catch (err) {
-      if (err.status === 404) {
+      if (err.status === 404 && activeButton === "All") {
         setIsNoTask(true);
+      } else if (err.status === 404) {
+        setIsNoFilterTask(true);
       }
     }
   }, [activeButton]);
 
   useEffect(() => {
     fetchData();
-  }, [activeButton, fetchData]);
+  }, [activeButton, fetchData, isNoFilterTask]);
 
   function handleAddTask() {
     fetchData();
@@ -50,6 +53,9 @@ export default function Tasks() {
       <TaskList
         tasks={tasks}
         isNoTask={isNoTask}
+        isNoFilterTask={isNoFilterTask}
+        setTasks={setTasks}
+        setIsNoFilterTask={setIsNoFilterTask}
         handleExpanded={handleExpanded}
         setSelectedTask={setSelectedTask}
         activeButton={activeButton}

@@ -9,7 +9,10 @@ library.add(fas);
 
 export default function TaskList({
   tasks,
+  setTasks,
   isNoTask,
+  isNoFilterTask,
+  setIsNoFilterTask,
   handleExpanded,
   setSelectedTask,
   activeButton,
@@ -17,6 +20,10 @@ export default function TaskList({
 }) {
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+    setIsNoFilterTask(false);
+    if (activeButton !== buttonName) {
+      setTasks([]);
+    }
   };
 
   return (
@@ -32,7 +39,11 @@ export default function TaskList({
           </PillBtn>
         ))}
       </div>
-      {isNoTask ? (
+      {isNoFilterTask ? (
+        <div className="empty-task-message">
+          There is no task with {activeButton} status yet!
+        </div>
+      ) : isNoTask ? (
         <AddTaskBtn onClick={handleExpanded} />
       ) : (
         <div className="task-list">
